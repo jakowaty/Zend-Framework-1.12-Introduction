@@ -33,5 +33,8 @@ class Jak_PCREValidator extends Zend_Application_Resource_ResourceAbstract
         return $this->validate($tag);
         
     }
+    
+    public function test22(){
+    }
 }
 ?>
