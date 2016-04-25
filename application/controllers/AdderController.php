@@ -40,11 +40,19 @@ class AdderController extends Zend_Controller_Action
                     throw new Exception('Nieprawidłowy symbol!');
                 }
                 
-                $this->view->post = $params;
-        
+                $tags = new Application_Model_DbTable_Tags();
+                $data = array(
+                    'tags_id' => $params['symbol'],
+                    'name' => $params['nazwa'],
+                    'description' => $params['opis']
+                );
+                
+                $tags->insert($data);
+                
+                $this->view->status = "Dodano kategorię tematyczną o tytule: \"" . $dummy->unhtml($params['nazwa']) . '"';
             }catch(Exception $ex){
             
-                $ex->getMessage();
+                $this->view->status = $ex->getMessage();
             
             }
         }
