@@ -1,0 +1,28 @@
+<?php
+if($this->post){
+    print_r($this->post);
+}else{
+?>
+<br /><br />
+
+	<form method='POST' class="panel panel-info" action='addtag' id="zend_form" class="form-inline" >
+        <div class="panel-heading">
+        <h4>Dodaj kategorię!</h4>
+        </div>
+        <div style="margin: auto;width:99%">
+            <br>
+            <label for="nazwa">Symbol (tylko znaki alfanumeryczne oraz "_" i "-")</label><br>
+            <input type="text" name="symbol" maxlength="50"/><br>
+            <label for="nazwa">Nazwa</label><br>
+            <input type="text" name="nazwa" maxlength="50"/><br>
+            <label for="opis">Opis</label><br>
+            <textarea name="opis" cols="50" rows="10"></textarea>
+            <br><br>
+            <input class="btn btn-info" type="submit" value="Wyślij" />
+            <br>
+        </div>
+    </form>
+
+<?php
+}
+?>

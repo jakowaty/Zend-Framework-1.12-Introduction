@@ -1,0 +1,21 @@
+
+  <h1>Wystąpił błąd</h1>
+  <h2><?php echo $this->message ?></h2>
+
+  <?php if (isset($this->exception)): ?>
+  
+  <h3>Informacja wyjątku:</h3>
+  <p>
+      <b>Info:</b> <?php echo $this->exception->getMessage() ?>
+  </p>
+
+  <h3>Śledzenie stosu wywołań:</h3>
+  <pre><?php echo $this->exception->getTraceAsString() ?>
+  </pre>
+
+  <h3>Parametry żądania:</h3>
+  <pre><?php echo $this->escape(var_export($this->request->getParams(), true)) ?>
+  </pre>
+
+  <?php endif ?>
+

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    	<link href="<?php echo $this->baseUrl('css/style1.css')?>" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl('bootstrap/css/bootstrap.css') ?>" /> 
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl('bootstrap/css/bootstrap-theme.css') ?>" /> 
+        
+        <script src="<?php echo $this->baseUrl('js/jquery-1.12.0.min.js') ?>"></script> 
+        <script src="<?php echo $this->baseUrl('bootstrap/js/bootstrap.js') ?>"></script>  
+
+	</head>
+    <body>
+
+        <div class="container" id="container-l1">
+            <h1 class="txt-cnt" style="font-family:BlackCasper">
+                ZendFramework 1.12 Test Blog
+            </h1>
+            <h4 class="txt-cnt" style="font-family:DESTROY">
+                ...just to learn!
+            </h4>
+            <hr>
+            <ul>
+                <li>
+                    <a href="<?php echo $this->url(array(), 'kategorie')?>">Lista tematów artykułów</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(array(), 'najnowsze')?>">Najnowsze artykuły</a>
+                </li>
+            </ul>
+            <hr>
+
+            <ul>
+                <li>
+                    <a href="<?php echo $this->url(array(), 'dodajtag')?>">Dodaj Tag</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(array(), 'dodajart')?>">Dodaj Wpis</a>
+                </li>
+            </ul>
+            <hr>
+
+                <?php echo $this->layout()->content; ?>
+
+        </div>
+
+    </body>
+</html>

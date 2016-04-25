@@ -1,0 +1,101 @@
+
+@font-face{
+    font-family : "FFF";
+    font-weight : normal;
+    font-style : normal;
+    src : 
+        url("../fonts/FFF_Tusj.ttf") format("truetype");
+}
+
+@font-face{
+    font-family : "BlackCasper";
+    font-weight : normal;
+    font-style : normal;
+    src : 
+        url("fonts/BlackCasper.ttf") format("truetype");
+}
+
+@font-face{
+    font-family : "SEASRN";
+    font-weight : normal;
+    font-style : normal;
+    src : 
+        url("fonts/SEASRN.ttf") format("truetype");
+}
+
+
+@font-face{
+    font-family : "DESTROY";
+    font-weight : normal;
+    font-style : normal;
+    src : 
+        url("fonts/DESTROY_.ttf") format("truetype");
+}
+
+/*@font-face{
+    font-family : "";
+    font-weight : normal;
+    font-style : normal;
+    src : 
+        url("") format("truetype");
+}*/
+
+
+@font-face{
+    font-family : "CaptureIt";
+    font-weight : normal;
+    font-style : normal;
+    src : 
+        url("fonts/Capture_it.ttf") format("truetype");
+}
+
+@font-face{
+    font-family : "CaptureIt2";
+    font-weight : normal;
+    font-style : normal;
+    src : 
+        url("fonts/Capture_it_2.ttf") format("truetype");
+}
+
+
+@font-face{
+    font-family : "Salaryman";
+    font-weight : normal;
+    font-style : normal;
+    src : 
+        url("fonts/SALARYMA.ttf") format("truetype");
+}
+
+
+
+
+html{
+    background-color: #000000 !important;
+    height: 100% ;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100% ;
+    color: black;
+    font-size: 14px;
+    font-family: verdana,serif;
+    cursor: default;
+    background-color: black !important;
+    word-wrap: break-word;
+}
+
+#container-l1{
+    width:96%;
+    min-height: 98% ;
+    border: 1px outset #BFBFBF;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: #ffffff;
+}
+
+.txt-cnt{
+    text-align: center;
+}
+
