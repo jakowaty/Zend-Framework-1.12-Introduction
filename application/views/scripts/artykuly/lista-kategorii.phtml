@@ -1,7 +1,37 @@
 <?php echo $this->headTitle("Kategorie Tematyczne");?>
 <br><br>
 <div id="view-content">
-	<p>Tu będzie lista kategorii mojego <b>bloga</b> </p>
-</div>
 
-<?php echo $this->penis; ?>
+<?php 
+    foreach($this->listTags as $tag){
+?>
+    <a href="<?= $tag['tags_id']; ?>" style="text-decoration: none">
+        <div class="panel panel-primary tag">
+            <div class="panel-heading">
+                <?= $tag['name']; ?>
+            </div>
+            <div class="panel-body">
+                <?= $tag['description']; ?>
+            </div>
+        </div>
+    </a>
+    <br >
+<?php
+    }
+?>
+
+</div>
+<script>
+    $(".tag").mouseover(function(){
+        $(this).removeClass("panel-primary");
+        $(this).addClass("panel-info");
+    });
+
+    $(".tag").mouseleave(function(){
+        $(this).removeClass("panel-info");
+        $(this).addClass("panel-primary");
+    });
+    
+</script>
+
+

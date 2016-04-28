@@ -10,8 +10,8 @@ class ArtykulyController extends Zend_Controller_Action
 
     public function listaKategoriiAction()
     {
-        // action body
-        $this->view->penis = 'listaKategoriiAction';
+        $tags = new Application_Model_DbTable_Tags();
+        $this->view->listTags = $tags->fetchAll(); 
     }
 
     public function najnowszeArtykulyAction()
