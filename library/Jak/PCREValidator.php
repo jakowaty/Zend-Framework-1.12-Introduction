@@ -34,6 +34,12 @@ class Jak_PCREValidator extends Zend_Application_Resource_ResourceAbstract
         
     }
     
-
+    public function validateArticleTitle($title){
+        
+        $regX = '~^[\w0-9_\-!?,. ]{1,80}$~';
+        $this->setPattern($regX);
+        return $this->validate($title);
+        
+    }
 }
 ?>

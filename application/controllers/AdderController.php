@@ -3,28 +3,17 @@
 class AdderController extends Zend_Controller_Action
 {
 
+    protected $http;
+    
     public function init()
     {
-        /* Initialize action controller here */
+        $this->http = new Zend_Controller_Request_Http();
     }
 
     public function addtagAction()
     {
-        $http = new Zend_Controller_Request_Http();
         
-        /*________JUST A TEST FOR METHODS TO RETRIEVE POST PARAMS_______*/
-        /*//method 1
-        if(($http->isPost()) AND ($nazwa = $http->getPost('nazwa'))){
-            $this->view->params = array();
-            $this->view->params[] = $nazwa;
-        }
-        //method2
-        $this->view->params2 = $this->getRequest()->getPost();
-        */
-        /*_______________________________________________________________*/
-        
-        
-        if($http->isPost()){
+        if($this->http->isPost()){
             
             try{
             
@@ -60,7 +49,45 @@ class AdderController extends Zend_Controller_Action
 
     public function addarticleAction()
     {
-        // action body
+        
+        $validator = new Jak_PCREValidator();
+        $tags = new Application_Model_DbTable_Tags();
+        $this->view->tags = $tags->selectColumns(array('tags_id', 'name'));
+        
+        if($this->http->isPost()){
+            
+            if(
+                    !$this->http->getParam('title') OR
+                    !$this->http->getParam('symbol') OR
+                    !$this->http->getParam('text')
+              ){
+                
+                $this->view->errors = array();
+                $this->view->errors[] = 'Błąd parametrów żądania';
+                return false;
+            
+                
+            }else{
+                
+                if(!$validator->validateArticleTitle($this->http->getParam('title'))){
+                    
+                    $this->view->errors = array();
+                    $this->view->errors[] = 'Błąd parametrów żądania';                    
+                    return false;
+                    
+                }else{
+                    $title = $this->http->getParam('title');
+                }
+                        
+                $id = sha1($this->http->getParam('title'));
+                $symbol = $this->http->getParam('symbol');
+                
+                //if(strlen())
+                
+            }
+            
+        }
+   
     }
 
 

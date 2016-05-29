@@ -1,11 +1,7 @@
-<?php
-if($this->post){
-    print_r($this->post);
-}else{
-?>
+
 <br /><br />
 
-	<form method='POST' class="panel panel-info" action='addtag' id="zend_form" class="form-inline" >
+	<form method='POST' class="panel panel-info" action='/addarticle' id="zend_form" class="form-inline" >
         <div class="panel-heading">
         <h4>Dodaj artykuł!</h4>
         </div>
@@ -17,6 +13,13 @@ if($this->post){
             <label for="symbol">Kategoria</label><br>
             <select name="symbol">
                 <option disabled="disabled">Wybierz kategorię</option>
+                
+                <?php foreach($this->tags as $tags): ?>
+            
+                    <option value="<?= $tags['tags_id'] ?>"> <?= $tags['name'] ?></option>
+                    
+                <?php endforeach ?>
+            
             </select><br>
             
             <label for="text">Opis</label><br>
@@ -27,6 +30,3 @@ if($this->post){
         </div>
     </form>
 
-<?php
-}
-?>

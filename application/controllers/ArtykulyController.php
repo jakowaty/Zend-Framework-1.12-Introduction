@@ -16,9 +16,7 @@ class ArtykulyController extends Zend_Controller_Action
 
     public function najnowszeArtykulyAction()
     {
-        // action body
-       // $this->view->penis = 'najnowszeArtykulyAction';
-        $this->view->penis = new Jak_DummyObj();
+
     }
 
 
