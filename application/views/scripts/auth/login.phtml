@@ -1,0 +1,10 @@
+<br /><br />
+<div id="view-content">
+    <?php if(isset($this->error)):?>
+    <?php var_dump($this->error); ?>
+    <?php elseif(isset($this->vals)): ?>
+    <?php var_dump($this->vals); ?>
+    <?php else: ?>
+    <?= $this->form; ?>
+    <?php endif ?>
+</div>
