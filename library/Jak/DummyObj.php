@@ -7,12 +7,14 @@ class Jak_DummyObj extends Zend_Application_Resource_ResourceAbstract{
     
     
     public function __construct($options = array()){
+        echo 'Dummy';
         //$config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini');
         $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/jak.ini');
         $this->_conf = $config;
     }
     
-    public function init(){        
+    public function init(){
+        echo 'Dummy';
     }
     
     public function get_it(){
