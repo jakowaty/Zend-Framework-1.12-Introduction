@@ -33,6 +33,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			->setSeparator($cfg->page->title->separator)
 			->headTitle($cfg->page->title->content);
 	}
+        
+    protected function _initACL()
+    {
+        $front = Zend_Controller_Front::getInstance();
+        $front->registerPlugin(new Plugin_ACL());
+    }        
 	
 }
 
