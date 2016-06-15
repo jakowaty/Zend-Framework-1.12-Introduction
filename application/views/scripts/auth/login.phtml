@@ -2,8 +2,8 @@
 <div id="view-content">
     <?php if(isset($this->error)):?>
     <?php var_dump($this->error); ?>
-    <?php elseif(isset($this->vals)): ?>
-    <?php var_dump($this->vals); ?>
+    <?php elseif(isset($this->success)): ?>
+    <?= $this->success; ?>
     <?php else: ?>
     <?= $this->form; ?>
     <?php endif ?>

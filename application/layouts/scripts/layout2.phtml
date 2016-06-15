@@ -1,7 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-            "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
-    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,10 +22,6 @@
                 ...just to learn!
             </h4>
             <hr>
-            Witaj
-            <?php $a = Zend_Auth::getInstance(); ?>
-            <?= $a->hasIdentity()? $a->getIdentity() : 'Gościu' ?> , miło Cię widzieć!
-            <hr>
             <ul>
                 <li>
                     <a href="<?php echo $this->url(array(), 'kategorie')?>">Lista tematów artykułów</a>
@@ -35,9 +29,6 @@
                 <li>
                     <a href="<?php echo $this->url(array(), 'najnowsze')?>">Najnowsze artykuły</a>
                 </li>
-                <li>
-                    <a href="<?php echo $this->url(array(), 'zaloguj')?>">Zaloguj się</a>
-                </li>                
             </ul>
             <hr>
 

@@ -6,9 +6,14 @@
 
 
 
-class AuthController extends Zend_Controller_Action
+class AuthController extends Zend_Controller_Action implements Jak_IAcl
 {
 
+    public static $_aclLevel = null;
+    public static function _hasPriviledge(){
+        return self::_aclLevel;
+    } 
+    
     protected $_auth;
     protected $_authAdapter;
     
@@ -37,7 +42,9 @@ class AuthController extends Zend_Controller_Action
                 //but this is about mvc/zend learn
                 $this->_authAdapter->setCredential(md5($vals['password']));
                 $result = $this->_auth->authenticate($this->_authAdapter);
-                
+                if($result->isValid()){
+                    $this->view->success = 'Zalogowano';
+                }
             }
         }
     }
@@ -47,6 +54,10 @@ class AuthController extends Zend_Controller_Action
         // action body
     }
 
-
+    public function logOut(){
+        if($this->_auth->hasIdentity()){
+            $this->_auth->clearIdentity();
+        }
+    }
 }
 

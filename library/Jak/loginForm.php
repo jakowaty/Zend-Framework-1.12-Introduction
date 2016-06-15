@@ -29,7 +29,7 @@ class Jak_loginForm extends Zend_Form
             'validators'=> array(
                 new Zend_Validate_Regex(
                         array(
-                            'pattern' => '~[\w[:punct:]]{6,50}~'
+                            'pattern' => '~[\w[:punct:]]{4,50}~'
                         )
                 )
             ) 
