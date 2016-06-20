@@ -1,12 +1,16 @@
 <?php
 
-class AdderController extends Zend_Controller_Action implements Jak_IAcl
+class AdderController extends Zend_Controller_Action implements Jak_IAcl,Zend_Acl_Resource_Interface
 {
 
-    public static $_aclLevel = '21232f297a57a5a743894a0e4a801fc3';
+    public static $_aclLevel = 'admin';
     public static function _hasPriviledge(){
-        return self::_aclLevel;
+        return self::$_aclLevel;
     }    
+    
+    public function getResourceId(){
+        return self::$_aclLevel;
+    }
     
     protected $http;
     

@@ -6,13 +6,17 @@
 
 
 
-class AuthController extends Zend_Controller_Action implements Jak_IAcl
+class AuthController extends Zend_Controller_Action implements Jak_IAcl,Zend_Acl_Resource_Interface
 {
 
     public static $_aclLevel = null;
     public static function _hasPriviledge(){
-        return self::_aclLevel;
+        return self::$_aclLevel;
     } 
+ 
+    public function getResourceId(){
+        return self::$_aclLevel;
+    }    
     
     protected $_auth;
     protected $_authAdapter;
@@ -44,6 +48,8 @@ class AuthController extends Zend_Controller_Action implements Jak_IAcl
                 $result = $this->_auth->authenticate($this->_authAdapter);
                 if($result->isValid()){
                     $this->view->success = 'Zalogowano';
+                    var_dump($this->_auth->getIdentity());
+                    die;
                 }
             }
         }
