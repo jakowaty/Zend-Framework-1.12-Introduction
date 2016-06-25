@@ -6,13 +6,9 @@
 
 
 
-class AuthController extends Zend_Controller_Action implements Jak_IAcl,Zend_Acl_Resource_Interface
+class AuthController extends Zend_Controller_Action implements Zend_Acl_Resource_Interface
 {
 
-    public static $_aclLevel = null;
-    public static function _hasPriviledge(){
-        return self::$_aclLevel;
-    } 
  
     public function getResourceId(){
         return self::$_aclLevel;
@@ -20,6 +16,7 @@ class AuthController extends Zend_Controller_Action implements Jak_IAcl,Zend_Acl
     
     protected $_auth;
     protected $_authAdapter;
+    protected $redirector;
     
     //not sure if Ishould do this through constructor
     public function init(){
@@ -28,7 +25,7 @@ class AuthController extends Zend_Controller_Action implements Jak_IAcl,Zend_Acl
         $this->_authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
         $this->_authAdapter->setTableName('user');
         $this->_authAdapter->setIdentityColumn('name');
-        $this->_authAdapter->setCredentialColumn('hash');
+        $this->_authAdapter->setCredentialColumn('hash');        
     }
     
     public function loginAction()
@@ -46,11 +43,17 @@ class AuthController extends Zend_Controller_Action implements Jak_IAcl,Zend_Acl
                 //but this is about mvc/zend learn
                 $this->_authAdapter->setCredential(md5($vals['password']));
                 $result = $this->_auth->authenticate($this->_authAdapter);
+                
+                
                 if($result->isValid()){
                     $this->view->success = 'Zalogowano';
-                    var_dump($this->_auth->getIdentity());
-                    die;
+                    $user = $this->_authAdapter->getResultRowObject();
+                    $Zend_Auth = new Zend_Session_Namespace('Zend_Auth');
+                    $Zend_Auth->role = $user->role;
+                    var_dump($_SESSION);
+                    //die;
                 }
+                
             }
         }
     }
@@ -60,10 +63,12 @@ class AuthController extends Zend_Controller_Action implements Jak_IAcl,Zend_Acl
         // action body
     }
 
-    public function logOut(){
+    public function logoutAction(){
         if($this->_auth->hasIdentity()){
             $this->_auth->clearIdentity();
         }
+        $this->_redirect('auth/login');
+        die;
     }
 }
 

@@ -22,13 +22,7 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
         
     }
 
-    protected function getCurrentRole($param) {
-        if(!$this->__auth->hasIdentity()){
-            $this->currentRole = 'guest';
-        }else{
-            $identity = $this->__auth->getIdentity();
-        }
-    }
+
 }
 
 ?>
