@@ -26,7 +26,8 @@
             <hr>
             Witaj
             <?php $a = Zend_Auth::getInstance(); ?>
-            <?= $a->hasIdentity()? $a->getIdentity() : 'Gościu' ?> , miło Cię widzieć!
+            <?= $a->hasIdentity()? $a->getIdentity() : 'Gościu' ;             $user = new Zend_Session_Namespace('Zend_Auth');
+             var_dump($user->role);?> , miło Cię widzieć!
             <hr>
             <ul>
                 <li>
