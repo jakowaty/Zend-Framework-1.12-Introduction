@@ -1,16 +1,12 @@
 <?php
 
-class ArtykulyController extends Zend_Controller_Action implements Jak_IAcl,Zend_Acl_Resource_Interface
+class ArtykulyController extends Zend_Controller_Action implements Jak_IAcl
 {
 
     public static $_aclLevel = null;
     public static function _hasPriviledge(){
         return self::$_aclLevel;
     } 
-
-    public function getResourceId(){
-        return self::$_aclLevel;
-    }
     
     public function listaKategoriiAction()
     {

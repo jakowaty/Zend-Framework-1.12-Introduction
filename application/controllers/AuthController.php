@@ -6,14 +6,8 @@
 
 
 
-class AuthController extends Zend_Controller_Action implements Zend_Acl_Resource_Interface
-{
-
- 
-    public function getResourceId(){
-        return self::$_aclLevel;
-    }    
-    
+class AuthController extends Zend_Controller_Action
+{    
     protected $_auth;
     protected $_authAdapter;
     protected $redirector;
@@ -47,10 +41,12 @@ class AuthController extends Zend_Controller_Action implements Zend_Acl_Resource
                 
                 if($result->isValid()){
                     $this->view->success = 'Zalogowano';
+                    //$storage = $this->_auth->getStorage();
+                    //$storage->write($this->_authAdapter->getResultRowObject(null,'hash'));
                     $user = $this->_authAdapter->getResultRowObject();
                     $Zend_Auth = new Zend_Session_Namespace('Zend_Auth');
                     $Zend_Auth->role = $user->role;
-                    var_dump($_SESSION);
+                    
                     //die;
                 }
                 
