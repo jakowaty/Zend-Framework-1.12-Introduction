@@ -1,13 +1,15 @@
 <?php
 
-class ErrorController extends Zend_Controller_Action implements Jak_IAcl
+class ErrorController extends Zend_Controller_Action
 {
 
     public static $_aclLevel = null;
-    public static function _hasPriviledge(){
+
+    public static function _hasPriviledge()
+    {
         return self::$_aclLevel;
-    } 
-    
+    }
+
     public function errorAction()
     {
         $errors = $this->_getParam('error_handler');
@@ -58,8 +60,18 @@ class ErrorController extends Zend_Controller_Action implements Jak_IAcl
         return $log;
     }
 
-    public function noauthAction(){
+    public function noauthAction()
+    {
         $this->view->message = 'You have to be loggedin';
     }
+
+    public function unpriviledgedAction()
+    {
+
+    }
+
+
 }
+
+
 

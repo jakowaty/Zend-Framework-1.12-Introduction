@@ -1,7 +1,8 @@
 <?php
 
 /**
- * 
+ * This is just basic sketch of ACL on resources which are controllers
+ *  in this implementation, however it can be expanded
  */
 Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
 {
@@ -48,14 +49,16 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
         }
     }
 
-
-    public function __construct(){
-        $this->__acl    = new Zend_Acl();
-        $this->__auth   = Zend_Auth::getInstance();
-        $this->initACL();
+    protected function isResource($r){
+        $resources = array_merge($this->resources, $this->restrictedResources);
+        return in_array($r, $resources);
     }
     
-    public function setCurrentRole () {
+    protected function isRestrictedResource($r){
+        return in_array($r, $this->restrictedResources);
+    }
+    
+    protected function setCurrentRole () {
         if ($this->__auth->hasIdentity()) {
             $role = $this->__auth->getIdentity()->role;
             if (
@@ -69,11 +72,23 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
             }
         } 
     }
-     
+
+    public function __construct(){
+        $this->__acl    = new Zend_Acl();
+        $this->__auth   = Zend_Auth::getInstance();
+        $this->initACL();
+    }    
+    
     public function preDispatch(Zend_Controller_Request_Abstract $request)
     {
         $controller = $request->getControllerName();
         $action     = $request->getActionName();
+        if ($this->isRestrictedResource($controller)) {
+            if (!$this->__acl->isAllowed($this->currentRole, $controller)) {
+                $redir = Zend_Controller_Action_HelperBroker::getStaticHelper('Redirector');         
+                $redir->gotoUrl('/error/unpriviledged');
+            }
+        }
     }
 
 

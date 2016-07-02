@@ -10,7 +10,9 @@
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
         </controllerFile>
-        <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="Error">
+          <actionMethod actionName="unpriviledged"/>
+        </controllerFile>
         <controllerFile controllerName="Artykuly">
           <actionMethod actionName="index"/>
           <actionMethod actionName="listaKateorii"/>
@@ -79,6 +81,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Auth">
             <viewScriptFile forActionName="register"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Error">
+            <viewScriptFile forActionName="unpriviledged"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
