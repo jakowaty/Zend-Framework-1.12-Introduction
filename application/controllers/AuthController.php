@@ -3,16 +3,11 @@
 /**
  * @class Auth
  */
-
-
-
 class AuthController extends Zend_Controller_Action
 {    
     protected $_auth;
     protected $_authAdapter;
-    protected $redirector;
     
-    //not sure if Ishould do this through constructor
     public function init(){
         $dbAdapter = Zend_Db_Table::getDefaultAdapter();
         $this->_auth = Zend_Auth::getInstance();
@@ -33,23 +28,18 @@ class AuthController extends Zend_Controller_Action
             }else{
                 $vals = $form->getValues();
                 $this->_authAdapter->setIdentity($vals['username']);
-                //I know this above isn't apropriate
-                //but this is about mvc/zend learn
+                //I know about salting and f.ex. Blowfish
+                //however this code is not about proper storing creds
+                //but about practicing frameworks
                 $this->_authAdapter->setCredential(md5($vals['password']));
                 $result = $this->_auth->authenticate($this->_authAdapter);
                 
-                
                 if($result->isValid()){
+                    $this->_auth
+                            ->getStorage()
+                            ->write($this->_authAdapter->getResultRowObject(['name', 'role']));
                     $this->view->success = 'Zalogowano';
-                    //$storage = $this->_auth->getStorage();
-                    //$storage->write($this->_authAdapter->getResultRowObject(null,'hash'));
-                    $user = $this->_authAdapter->getResultRowObject();
-                    $Zend_Auth = new Zend_Session_Namespace('Zend_Auth');
-                    $Zend_Auth->role = $user->role;
-                    
-                    //die;
                 }
-                
             }
         }
     }
