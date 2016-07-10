@@ -10,6 +10,7 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
     protected $__acl;
     protected $__auth;
     protected $currentRole;
+    protected static $currentUser;
     
     protected $resources            = [
         'artykuly',
@@ -29,6 +30,7 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
         $this->setResources();
         $this->setPriviledges();
         $this->setCurrentRole();
+        $this->setCurrentUser();
     }
     
     protected function setRoles(){
@@ -67,12 +69,23 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
                ($role === self::ADMIN)
                ) {
                 $this->currentRole = $role;
-            } else {
+            }else {
                 $this->currentRole = self::GUEST;
             }
-        } 
+        } else {
+            $this->currentRole = self::GUEST;
+        }
     }
 
+    protected function setCurrentUser(){
+        if (!is_object(self::$currentUser)) {
+            self::$currentUser = new Plugin_User($this->currentRole);
+        }
+    }
+    protected function getCurrentUser(){
+        return self::$currentUser;
+    }
+    
     public function __construct(){
         $this->__acl    = new Zend_Acl();
         $this->__auth   = Zend_Auth::getInstance();
@@ -89,8 +102,8 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
                 $redir->gotoUrl('/error/unpriviledged');
             }
         }
+ 
     }
-
 
 }
 

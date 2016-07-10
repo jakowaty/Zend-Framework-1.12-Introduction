@@ -25,9 +25,9 @@
             </h4>
             <hr>
             Witaj
-            <?php $a = Zend_Auth::getInstance(); ?>
-            <?php $a->hasIdentity()? $a->getIdentity() : 'Gościu' ;
-             var_dump($_SESSION);?> , miło Cię widzieć!
+            <?php
+            //$user = Plugin_ACL::getCurrentUser();
+            ?>
             <hr>
             <ul>
                 <li>
