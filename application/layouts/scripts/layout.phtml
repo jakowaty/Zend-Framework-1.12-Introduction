@@ -25,9 +25,7 @@
             </h4>
             <hr>
             Witaj
-            <?php
-            //$user = Plugin_ACL::getCurrentUser();
-            ?>
+            <?= Plugin_User::getName() ? Plugin_User::getName() : 'Gościu'; ?>
             <hr>
             <ul>
                 <li>
