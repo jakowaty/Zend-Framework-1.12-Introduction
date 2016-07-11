@@ -41,5 +41,9 @@ class Plugin_User
             return self::$role === Plugin_ACL::USER;
         }
     }
+    
+    public static function isLoggedIn(){
+        return self::isUser();
+    }
 }
 
