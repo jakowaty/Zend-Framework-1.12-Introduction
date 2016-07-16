@@ -30,7 +30,9 @@
           <actionMethod actionName="register"/>
         </controllerFile>
       </controllersDirectory>
-      <formsDirectory enabled="false"/>
+      <formsDirectory>
+        <formFile formName="Register"/>
+      </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
           <layoutScriptFile layoutName="layout"/>
@@ -40,6 +42,7 @@
         <dbTableDirectory>
           <dbTableFile dbTableName="Articles"/>
           <dbTableFile dbTableName="Tags"/>
+          <dbTableFile dbTableName="Token"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
