@@ -55,6 +55,31 @@ LOCK TABLES `articles` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `roles` (
+  `id` tinyint(1) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`,`role_name`),
+  KEY `role_name` (`role_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (3,'admin'),(1,'guest'),(2,'user');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tags`
 --
 
@@ -77,6 +102,7 @@ CREATE TABLE `tags` (
 
 LOCK TABLES `tags` WRITE;
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
+INSERT INTO `tags` VALUES ('programowanie','Programming','Arts o programowaniu');
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,23 +115,16 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `name` varchar(45) NOT NULL,
+  `mail` varchar(100) NOT NULL,
   `hash` varchar(100) NOT NULL,
-  `role` varchar(6) NOT NULL DEFAULT 'guest',
-  PRIMARY KEY (`name`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
+  `role` varchar(10) NOT NULL,
+  PRIMARY KEY (`name`,`mail`),
+  UNIQUE KEY `name_UNIQUE` (`name`),
+  KEY `role` (`role`),
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role`) REFERENCES `roles` (`role_name`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('jakowaty','9743a66f914cc249efca164485a19c5c','admin');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -115,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-25 13:50:42
+-- Dump completed on 2016-07-16 20:25:01

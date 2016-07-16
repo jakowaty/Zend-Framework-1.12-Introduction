@@ -1,8 +1,0 @@
-Options +FollowSymLinks
-RewriteEngine On
-
-RewriteCond %{REQUEST_URI} ^/zend_blog_learn
-
-RewriteCond %{THE_REQUEST} \s/zend_blog_learn/(\S*) [NC]
-RewriteRule ^ /zend_blog_learn/public%1 [R=301,L,NE]
-
