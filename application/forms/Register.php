@@ -70,13 +70,16 @@ class Application_Form_Register extends Zend_Form
         $captchaAdapter->setFont('/var/www/zend_blog_learn/public/captcha/cz1.ttf');
         $captchaAdapter->setImgDir('/var/www/zend_blog_learn/public/captcha/');
         $captchaAdapter->setImgUrl('/zend_blog_learn/public/captcha/');
+        $captchaAdapter->setFontSize(30);
+        $captchaAdapter->setExpiration(300);
+        $captchaAdapter->setGcFreq(50);
         $captchaAdapter->setWordLen(6);
         $captcha        = new Zend_Form_Element_Captcha('captcha',['captcha' => $captchaAdapter]);
         $this->addElement($captcha, 'captcha');
         
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,
-            'label'    => 'Register',
+            'label'    => 'Zarejestruj się',
             ));        
     }
 
