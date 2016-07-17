@@ -43,6 +43,7 @@
           <dbTableFile dbTableName="Articles"/>
           <dbTableFile dbTableName="Tags"/>
           <dbTableFile dbTableName="Token"/>
+          <dbTableFile dbTableName="User"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>

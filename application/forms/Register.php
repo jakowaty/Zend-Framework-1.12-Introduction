@@ -31,7 +31,6 @@ class Application_Form_Register extends Zend_Form
                 'label'         => 'Email:',
                 'required'      => true,
                 'validators'    => array(
-                    'alnum', 
                     new Zend_Validate_StringLength(array(
                         'min' => 17,
                         'max' => 90)),

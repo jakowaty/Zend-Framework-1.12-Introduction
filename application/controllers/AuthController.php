@@ -49,14 +49,14 @@ class AuthController extends Zend_Controller_Action
         $form = new Application_Form_Register();
         if ($this->getRequest()->isGet()) {
             $this->view->form = $form;
-        } elseif ($this->getRequest->isPost()) {
+        } elseif ($this->getRequest()->isPost()) {
             if (!$form->isValid($_POST)) {
                 $this->view->error = $form->getMessages();
             } else {
                 $name = $this->getRequest()->getParam('username');
                 $mail = $this->getRequest()->getParam('mail');
                 $pass = $this->getRequest()->getParam('password');
-                $result = $this->registerUser($name, $mail, $pass);
+                $result = $this->registerUser(['name' => $name, 'mail' => $mail, 'pass' => $pass]);
                 if ($result === true) {
                     $this->view->success = 'Utworzyłeś konto: ' . $name; 
                 } else {
@@ -76,7 +76,20 @@ class AuthController extends Zend_Controller_Action
     
     protected function registerUser(array $v)
     {
+        $tableUser      = new Application_Model_DbTable_User(); 
+        $tableToken     = new Application_Model_DbTable_Token();
         
+        $user           = new stdClass();
+        $user->name     = $v['name'];
+        $user->mail     = $v['mail'];
+        $user->hash     = md5($v['pass']);
+        
+        if ($tableUser->createUser($user)) {
+            $token          = new stdClass();
+            $token->user    = $v['name'];
+        } else {
+            return ['Coulden\'t create user record! Im so sorry :( .'];
+        }
     }
 }
 

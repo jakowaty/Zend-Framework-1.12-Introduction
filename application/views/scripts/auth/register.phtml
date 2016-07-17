@@ -1,11 +1,12 @@
 <br /><br />
 <div id="view-content">
     <div class="container">
-	<?php echo $this->form ?>
         <?php if(isset($this->error)):?>
-        <?php   foreach ($this->error as $e):?>
-        <?= $e ?>
-        <?php   endforeach ?>
+        <?php var_dump($this->error)?>
+        <?php elseif(isset($this->success)):?>
+        <?php var_dump($this->success)?>
+        <?php else:?>
+        <?php echo $this->form ?>
         <?php endif ?>
     </div>
 </div>
