@@ -46,7 +46,8 @@ class AuthController extends Zend_Controller_Action
 
     public function registerAction()
     {
-        // action body
+        $form = new Application_Form_Register();
+        $this->view->form = $form;
     }
 
     public function logoutAction(){
