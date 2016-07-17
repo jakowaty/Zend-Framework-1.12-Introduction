@@ -47,7 +47,23 @@ class AuthController extends Zend_Controller_Action
     public function registerAction()
     {
         $form = new Application_Form_Register();
-        $this->view->form = $form;
+        if ($this->getRequest()->isGet()) {
+            $this->view->form = $form;
+        } elseif ($this->getRequest->isPost()) {
+            if (!$form->isValid($_POST)) {
+                $this->view->error = $form->getMessages();
+            } else {
+                $name = $this->getRequest()->getParam('username');
+                $mail = $this->getRequest()->getParam('mail');
+                $pass = $this->getRequest()->getParam('password');
+                $result = $this->registerUser($name, $mail, $pass);
+                if ($result === true) {
+                    $this->view->success = 'Utworzyłeś konto: ' . $name; 
+                } else {
+                    $this->view->error = $result;
+                }
+            }
+        }
     }
 
     public function logoutAction(){
@@ -56,6 +72,11 @@ class AuthController extends Zend_Controller_Action
         }
         $this->_redirect('auth/login');
         die;
+    }
+    
+    protected function registerUser(array $v)
+    {
+        
     }
 }
 
