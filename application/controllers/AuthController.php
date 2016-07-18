@@ -87,9 +87,20 @@ class AuthController extends Zend_Controller_Action
         if ($tableUser->createUser($user)) {
             $token          = new stdClass();
             $token->user    = $v['name'];
+            $r              = $tableToken->generateActivation($token);
+            if ($r) {
+                
+            } else {
+                return ['Coulden\'t create user Activation Token! Im so sorry :( . Please something something.'];
+            }
         } else {
-            return ['Coulden\'t create user record! Im so sorry :( .'];
+            return ['Coulden\'t create user record! Im so sorry :( . Please something something.'];
         }
+    }
+    
+    protected function sendRegistrationToken()
+    {
+        
     }
 }
 
