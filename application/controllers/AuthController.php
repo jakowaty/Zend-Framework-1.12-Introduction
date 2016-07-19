@@ -89,7 +89,22 @@ class AuthController extends Zend_Controller_Action
             $token->user    = $v['name'];
             $r              = $tableToken->generateActivation($token);
             if ($r) {
-                
+                $config     = [
+                    'ssl'       => 'ssl',
+                    'port'      => 465,
+                    'auth'      => 'login',
+                    'username'  => 'penis@gmail.com',
+                    'password'  => 'verrySecureAndStealthPassword'
+                ];
+
+                $link       = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . '/auth/activate?t=' . $r;
+                $transport  = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+                $mail       = new Zend_Mail();
+                $mail->setBodyText($link);
+                $mail->setFrom('learn-zend@penis.com', 'Learn Support');
+                $mail->addTo($user->mail, $user->name);
+                $mail->setSubject('Activation link from Learn-Zend');
+                $mail->send($transport);
             } else {
                 return ['Coulden\'t create user Activation Token! Im so sorry :( . Please something something.'];
             }
