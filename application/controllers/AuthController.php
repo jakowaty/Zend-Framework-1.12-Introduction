@@ -127,14 +127,14 @@ class AuthController extends Zend_Controller_Action
             throw new Exception('No $_GET[t]');
         }
         
-        $db         = new Application_Model_DbTable_Token();
-        $resToken   = $db->getActivateToken($t)->toArray();
+        $dbToken    = new Application_Model_DbTable_Token();
+        $resToken   = $dbToken->getActivateToken($t)->toArray();
         $resToken   = $resToken[0];
+        
         if (empty($resToken)) {
             throw new Exception('Invalid activation token requested.');
         }
-      
-      
+     
         if (time() > intval($resToken['expires'])) {
             throw new Exception('Requested token expired');
         }
@@ -142,7 +142,28 @@ class AuthController extends Zend_Controller_Action
         if ($resToken['type'] !== 'activate') {
             throw new Exception('Requested token invalid type');
         }
-        $this->view->result = gettype($resToken['expires']);
+        
+        $dbUser     = new Application_Model_DbTable_User();
+        $resUser    = $dbUser->getUserData($name);
+        
+        if (empty($resUser)) {
+            throw new Exception('Unexpected Exception in ' . __CLASS__ . '::' . __FUNCTION__ . '()');
+        }
+        
+        $resUser = $resUser[0];
+        
+        if ($resUser['role'] === Plugin_ACL::GUEST) {
+            if ($dbUser->roleUser($resUser['name'])) {
+                $r = 'Aktywowano usera!';
+            } else {
+                $r = ' Nie udało się aktywoawać usera.';
+            }
+        } else {
+            $r = 'User has been activated!';
+        }
+        
+        
+        $this->view->result = $r;
         //die;
     }
 
