@@ -37,9 +37,14 @@ class Application_Model_DbTable_Token extends Zend_Db_Table_Abstract
         }
     }
     
-    public function generateReset()
+    public function getActivateToken($token)
     {
-        
+        $db = $this->getAdapter();
+        $select = $this->select()
+                ->where('token = ?', $token)
+                ->where('type = ?', 'activate');
+        $select = $this->fetchAll($select);
+        return $select;
     }
 }
 

@@ -3,12 +3,16 @@
 /**
  * @class Auth
  */
+
 class AuthController extends Zend_Controller_Action
-{    
-    protected $_auth;
-    protected $_authAdapter;
-    
-    public function init(){
+{
+
+    protected $_auth = null;
+
+    protected $_authAdapter = null;
+
+    public function init()
+    {
         $dbAdapter = Zend_Db_Table::getDefaultAdapter();
         $this->_auth = Zend_Auth::getInstance();
         $this->_authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
@@ -16,7 +20,7 @@ class AuthController extends Zend_Controller_Action
         $this->_authAdapter->setIdentityColumn('name');
         $this->_authAdapter->setCredentialColumn('hash');        
     }
-    
+
     public function loginAction()
     {
         $form = new Jak_loginForm();
@@ -39,6 +43,8 @@ class AuthController extends Zend_Controller_Action
                             ->getStorage()
                             ->write($this->_authAdapter->getResultRowObject(['name', 'role']));
                     $this->view->success = 'Zalogowano';
+                } else {
+                    $this->view->error = 'Niezalogowano';
                 }
             }
         }
@@ -66,14 +72,15 @@ class AuthController extends Zend_Controller_Action
         }
     }
 
-    public function logoutAction(){
+    public function logoutAction()
+    {
         if($this->_auth->hasIdentity()){
             $this->_auth->clearIdentity();
         }
         $this->_redirect('auth/login');
         die;
     }
-    
+
     protected function registerUser(array $v)
     {
         $tableUser      = new Application_Model_DbTable_User(); 
@@ -93,7 +100,7 @@ class AuthController extends Zend_Controller_Action
                     'ssl'       => 'ssl',
                     'port'      => 465,
                     'auth'      => 'login',
-                    'username'  => 'penis@gmail.com',
+                    'username'  => 'account@gmail.com',
                     'password'  => 'verrySecureAndStealthPassword'
                 ];
 
@@ -101,9 +108,9 @@ class AuthController extends Zend_Controller_Action
                 $transport  = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
                 $mail       = new Zend_Mail();
                 $mail->setBodyText($link);
-                $mail->setFrom('learn-zend@penis.com', 'Learn Support');
+                $mail->setFrom('learn-zend@penrist.com', 'Learn Support');
                 $mail->addTo($user->mail, $user->name);
-                $mail->setSubject('Activation link from Learn-Zend');
+                $mail->setSubject('Activation link from Learn-Zend-Blog');
                 $mail->send($transport);
             } else {
                 return ['Coulden\'t create user Activation Token! Im so sorry :( . Please something something.'];
@@ -112,10 +119,32 @@ class AuthController extends Zend_Controller_Action
             return ['Coulden\'t create user record! Im so sorry :( . Please something something.'];
         }
     }
-    
-    protected function sendRegistrationToken()
-    {
-        
-    }
-}
 
+    public function activateuserAction()
+    {
+        $t  = $this->getParam('t');
+        if (!$t){
+            throw new Exception('No $_GET[t]');
+        }
+        
+        $db         = new Application_Model_DbTable_Token();
+        $resToken   = $db->getActivateToken($t)->toArray();
+        $resToken   = $resToken[0];
+        if (empty($resToken)) {
+            throw new Exception('Invalid activation token requested.');
+        }
+      
+      
+        if (time() > intval($resToken['expires'])) {
+            throw new Exception('Requested token expired');
+        }
+        
+        if ($resToken['type'] !== 'activate') {
+            throw new Exception('Requested token invalid type');
+        }
+        $this->view->result = gettype($resToken['expires']);
+        //die;
+    }
+
+
+}
