@@ -154,12 +154,13 @@ class AuthController extends Zend_Controller_Action
         
         if ($resUser['role'] === Plugin_ACL::GUEST) {
             if ($dbUser->roleUser($resUser['name'])) {
+                
                 $r = 'Aktywowano usera!';
             } else {
                 $r = ' Nie udało się aktywoawać usera.';
             }
         } else {
-            $r = 'User has been activated!';
+            $r = 'Ten użytkownik został już aktywowany!';
         }
         
         
