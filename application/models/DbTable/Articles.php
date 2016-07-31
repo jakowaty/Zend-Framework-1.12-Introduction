@@ -12,6 +12,19 @@ class Application_Model_DbTable_Articles extends Zend_Db_Table_Abstract
             'refTableColumns'   => 'tags_id'
         )
     );
+    
+    public function insertArticle(array $a)
+    {
+        $data = array(
+            'articles_id'   => $a['id'],
+            'title'         => $a['title'],
+            'tags_id'       => $a['tags_id'],
+            'autor'         => $a['autor'],
+            'text'          => $a['text']
+        );
+                
+        return $this->insert($data);        
+    }
 
 }
 

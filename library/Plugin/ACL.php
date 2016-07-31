@@ -19,7 +19,9 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
 
     protected $restrictedResources  = [
         self::ADMIN => 'adder',
+        
         self::USER  => 'comment'
+        
     ];
 
     const GUEST = 'guest';
@@ -42,7 +44,7 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
     
     protected function setResources(){
         foreach ($this->restrictedResources as $resource) {
-            $this->__acl->addResource(new Zend_Acl_Resource($resource));
+                $this->__acl->addResource(new Zend_Acl_Resource($resource));
         }
     }
     
@@ -104,10 +106,8 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
     {
         $controller = $request->getControllerName();
         $action     = $request->getActionName();
-        if ($this->isRestrictedResource($controller) || $this->isRestrictedResource($action)) {
-            if (!$this->__acl->isAllowed($this->currentRole, $controller) ||
-                !!$this->__acl->isAllowed($this->currentRole, $action)
-                ) {
+        if ($this->isRestrictedResource($controller)) {
+            if (!$this->__acl->isAllowed($this->currentRole, $controller)) {
                 $redir = Zend_Controller_Action_HelperBroker::getStaticHelper('Redirector');         
                 $redir->gotoUrl('/error/unpriviledged');
             }

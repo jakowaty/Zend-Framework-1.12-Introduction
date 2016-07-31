@@ -86,10 +86,18 @@ class AdderController extends Zend_Controller_Action implements Zend_Acl_Resourc
                     $title = $this->http->getParam('title');
                 }
                         
-                $id = sha1($this->http->getParam('title'));
+                $id     = sha1($title);
                 $symbol = $this->http->getParam('symbol');
-                
+                $text   = $this->http->getParam('text');
                 //if(strlen())
+                $arts = new Application_Model_DbTable_Articles();
+                $arts->insertArticle([
+                    'tags_id'       => $symbol,
+                    'id'            => $id,
+                    'title'         => $title,
+                    'autor'         => 'n_r',
+                    'text'          => $text
+                ]);
                 
             }
             
