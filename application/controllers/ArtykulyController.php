@@ -23,11 +23,6 @@ class ArtykulyController extends Zend_Controller_Action
         $this->view->param = $this->getParam('art_id');
     }
     
-    public function artykulShowAction()
-    {
-        $this->_helper->viewRenderer('art');
-        $this->view->param = 'b';
-    }
 
 
 }
