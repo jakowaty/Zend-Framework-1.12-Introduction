@@ -11,7 +11,8 @@ class ArtykulyController extends Zend_Controller_Action
 
     public function najnowszeArtykulyAction()
     {
-
+        $articles = new Application_Model_DbTable_Articles();
+        $this->view->listArt = $articles->fetchAll();
     }
 
 

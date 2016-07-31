@@ -1,7 +1,11 @@
         <?php echo $this->headTitle("Start");?>
 <br><br>
 <div id="view-content">
-	<p>Tu będzie lista najnowszych artykółow mojego <b>bloga</b> </p>
+    <ul>
+        <?php foreach ($this->listArt as $art): ?>
+        <li><?php print_r($art->title)?></li>
+        <?php endforeach ?>
+    </ul>
 </div>
 
 <br>
