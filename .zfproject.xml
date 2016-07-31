@@ -18,6 +18,7 @@
           <actionMethod actionName="listaKateorii"/>
           <actionMethod actionName="listaKategorii"/>
           <actionMethod actionName="najnowszeArtykuly"/>
+          <actionMethod actionName="artykulShow"/>
         </controllerFile>
         <controllerFile controllerName="Adder">
           <actionMethod actionName="index"/>
@@ -102,6 +103,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Developer">
             <viewScriptFile forActionName="deltest"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Artykuly">
+            <viewScriptFile forActionName="artykulShow"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

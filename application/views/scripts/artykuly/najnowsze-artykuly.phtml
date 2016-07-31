@@ -3,7 +3,7 @@
 <div id="view-content">
     <ul>
         <?php foreach ($this->listArt as $art): ?>
-        <li><?php print_r($art->title)?></li>
+        <li><a href="<?= $this->url(['controller' => 'artykuly', 'action' => $art->articles_id . ".html"])?>/<?= $art->articles_id ?>.html"><?php print_r($art->title)?></a></li>
         <?php endforeach ?>
     </ul>
 </div>
