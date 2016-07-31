@@ -39,7 +39,6 @@ class Application_Model_DbTable_Token extends Zend_Db_Table_Abstract
     
     public function getActivateToken($token)
     {
-        $db = $this->getAdapter();
         $select = $this->select()
                 ->where('token = ?', $token)
                 ->where('type = ?', 'activate');
@@ -49,11 +48,6 @@ class Application_Model_DbTable_Token extends Zend_Db_Table_Abstract
     
     public function removeToken($token, $user)
     {
-        $db     = $this->getAdapter();
-        /*$where  = [];
-        $where  []= $db->quoteInto('token = ?', $token);
-        $where  []= $db->quoteInto('user =?', $user);
-        $delete = $this->delete($where);*/
         $select = $this->select()
                 ->where('token = ?', $token)
                 ->where('user = ?', $user);

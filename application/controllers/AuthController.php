@@ -153,19 +153,29 @@ class AuthController extends Zend_Controller_Action
         $resUser = $resUser[0];
         
         if ($resUser['role'] === Plugin_ACL::GUEST) {
+            //user activate
             if ($dbUser->roleUser($resUser['name'])) {
+                //delete void token
+                 if ($row !== null) {
+                    $r = $row->delete();
+                    if ($r) {
+                        $r = 'deleted token';
+                    } else {
+                        $r = 'i dont want delete token';
+                    }
+            
+                }else{
+                    $r = 'Invalid param values';
+                }
                 
-                $r = 'Aktywowano usera!';
+                $r .= 'Aktywowano usera!';
             } else {
                 $r = ' Nie udało się aktywoawać usera.';
             }
         } else {
             $r = 'Ten użytkownik został już aktywowany!';
         }
-        
-        
         $this->view->result = $r;
-        //die;
     }
 
 

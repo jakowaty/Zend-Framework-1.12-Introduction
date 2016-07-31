@@ -32,6 +32,7 @@
         </controllerFile>
         <controllerFile controllerName="Developer">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="deltest"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -98,6 +99,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Developer">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Developer">
+            <viewScriptFile forActionName="deltest"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
