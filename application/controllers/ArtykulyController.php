@@ -16,16 +16,38 @@ class ArtykulyController extends Zend_Controller_Action
         $this->_helper->viewRenderer('najnowsze-artykuly');
     }
 
-    public function najnowszeAction()
+    public function artykulAction()
     {
         
-        $this->_helper->viewRenderer('art');
-        $this->view->param = $this->getParam('art_id');
     }
-    
+
+    public function kategoriaAction()
+    {
+        $param             = $this->getParam('id');
+        $this->view->param = $param;
+        $articlesDB        = new Application_Model_DbTable_Articles();
+        $tagsDB            = new Application_Model_DbTable_Tags();
+        
+        $select     = $tagsDB->select()->where('tags_id = ?', $param);
+        $tag        = $tagsDB->fetchRow($select);
+        
+        if (!$tag) {
+            throw new Exception('Invalid tags id');
+        }
+        
+        $select     = $articlesDB->select()->where('tags_id = ?', $param);
+        $articles   = $articlesDB->fetchAll($select);
+        
+        $this->view->tag      = $tag;
+        $this->view->articles = $articles;
+    }
 
 
 }
+
+
+
+
 
 
 

@@ -3,9 +3,14 @@
 <div id="view-content">
 
 <?php 
-    foreach($this->listTags as $tag){
+    foreach($this->listTags as $tag):
+        $url = $this->url([
+            'controller' => 'artykuly',
+            'action'     => 'kategoria',
+            'id'         => $tag['tags_id']
+        ],  'default')
 ?>
-    <a href="<?= $tag['tags_id']; ?>" style="text-decoration: none">
+    <a href="<?= $url ?>" style="text-decoration: none">
         <div class="panel panel-primary tag">
             <div class="panel-heading">
                 <?= $tag['name']; ?>
@@ -17,7 +22,7 @@
     </a>
     <br >
 <?php
-    }
+    endforeach
 ?>
 
 </div>

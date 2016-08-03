@@ -1,0 +1,19 @@
+<br /><br />
+<div id="view-content">
+    <?php //$this->param?>
+    <br>
+    <h2><?= $this->tag['name'] ?></h2>
+    <hr>
+    <?= $this->tag['description'] ?>
+    <br><hr>
+    
+    <?php
+    if (count($this->articles) > 0):
+        foreach ($this->articles as $article): ?>
+    <?php endforeach;
+    else: ?>
+    Dla tagu '<i><?= $this->tag['name'] ?></i>' nie ma jeszcze wpisów.
+    <?php    
+    endif;
+    ?>
+</div>

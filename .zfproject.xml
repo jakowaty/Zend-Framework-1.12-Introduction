@@ -19,6 +19,8 @@
           <actionMethod actionName="listaKategorii"/>
           <actionMethod actionName="najnowszeArtykuly"/>
           <actionMethod actionName="artykulShow"/>
+          <actionMethod actionName="artykul"/>
+          <actionMethod actionName="kategoria"/>
         </controllerFile>
         <controllerFile controllerName="Adder">
           <actionMethod actionName="index"/>
@@ -106,6 +108,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Artykuly">
             <viewScriptFile forActionName="artykulShow"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Artykuly">
+            <viewScriptFile forActionName="artykul"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Artykuly">
+            <viewScriptFile forActionName="kategoria"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
