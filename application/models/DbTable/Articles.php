@@ -26,5 +26,21 @@ class Application_Model_DbTable_Articles extends Zend_Db_Table_Abstract
         return $this->insert($data);        
     }
 
+    public function selectColumns(array $columns, array $where = []){
+        
+        $db = $this->getAdapter();
+        
+        $select = (count($columns) === 0)?
+            $db->select()->from($this->_name) :
+            $db->select()->from($this->_name, $columns);
+        
+        if (!empty($where)) {
+            $select = $select->where($where[0], $where[1]);
+        }
+        
+        $result = $db->query($select);
+        
+        return $result;
+    }
 }
 

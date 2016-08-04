@@ -8,10 +8,19 @@
     <br><hr>
     
     <?php
-    if (count($this->articles) > 0):
-        foreach ($this->articles as $article): ?>
-    <?php endforeach;
-    else: ?>
+    if (count($this->articles) > 0): ?>
+        <ul>
+        <?php foreach ($this->articles as $article): ?>
+            <li><a href="<?= $this->url([
+                                            'controller' => 'artykuly',
+                                            'action'     => 'artykul',
+                                            'pokaz'      => $article['articles_id']
+                                        ],  'default');$article ?>" >
+                    <h4><?= $article['title'] ?></h4>                            
+                </a>
+        <?php endforeach; ?>
+        </ul>    
+    <?php else: ?>
     Dla tagu '<i><?= $this->tag['name'] ?></i>' nie ma jeszcze wpisów.
     <?php    
     endif;

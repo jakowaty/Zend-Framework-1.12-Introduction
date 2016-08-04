@@ -1,4 +1,13 @@
 <br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Artykuly</b> and script/action name <b>artykul</b></p>
+<div id="view-content container">
+
+    <hr>
+    <h3 style="text-align: center">
+        <?php print $this->article['title']?> 
+        <span style="font-weight: normal; font-size: 0.4em">
+            <i> by <span style="font-size: 1.8em"><?php print $this->article->autor?></i>
+        </span>
+    </h3>
+    <?php print $this->article['text']?> 
+    <hr>
 </div>

@@ -37,6 +37,9 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="deltest"/>
         </controllerFile>
+        <controllerFile controllerName="Comments">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Register"/>
@@ -114,6 +117,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Artykuly">
             <viewScriptFile forActionName="kategoria"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Comments">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

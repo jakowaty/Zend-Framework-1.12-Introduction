@@ -18,15 +18,18 @@ class ArtykulyController extends Zend_Controller_Action
 
     public function artykulAction()
     {
-        
+        $param      = $this->getParam('pokaz');
+        $articlesDB = new Application_Model_DbTable_Articles();
+        $select     = $articlesDB->select()->where('articles_id = ?', $param);
+        $res        = $articlesDB->fetchRow($select);
+        $this->view-> article = $res;
     }
 
     public function kategoriaAction()
     {
-        $param             = $this->getParam('id');
-        $this->view->param = $param;
-        $articlesDB        = new Application_Model_DbTable_Articles();
-        $tagsDB            = new Application_Model_DbTable_Tags();
+        $param      = $this->getParam('id');
+        $articlesDB = new Application_Model_DbTable_Articles();
+        $tagsDB     = new Application_Model_DbTable_Tags();
         
         $select     = $tagsDB->select()->where('tags_id = ?', $param);
         $tag        = $tagsDB->fetchRow($select);
@@ -35,9 +38,9 @@ class ArtykulyController extends Zend_Controller_Action
             throw new Exception('Invalid tags id');
         }
         
-        $select     = $articlesDB->select()->where('tags_id = ?', $param);
-        $articles   = $articlesDB->fetchAll($select);
+        $articles = $articlesDB->selectColumns(['articles_id', 'title'], ['tags_id = ?', $param]);
         
+        $this->view->param    = $param;
         $this->view->tag      = $tag;
         $this->view->articles = $articles;
     }
