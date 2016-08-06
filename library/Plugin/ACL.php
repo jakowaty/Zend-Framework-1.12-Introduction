@@ -19,9 +19,7 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
 
     protected $restrictedResources  = [
         self::ADMIN => 'adder',
-        
-        self::USER  => 'comment'
-        
+        self::USER  => 'comments'
     ];
 
     const GUEST = 'guest';

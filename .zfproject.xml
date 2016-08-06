@@ -43,6 +43,7 @@
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Register"/>
+        <formFile formName="Comments"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -55,6 +56,7 @@
           <dbTableFile dbTableName="Tags"/>
           <dbTableFile dbTableName="Token"/>
           <dbTableFile dbTableName="User"/>
+          <dbTableFile dbTableName="Comments"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>

@@ -1,9 +1,11 @@
         <?php echo $this->headTitle("Start");?>
 <br><br>
 <div id="view-content">
+    jdkshfkdf
     <ul>
+        
         <?php foreach ($this->listArt as $art): ?>
-        <li><a href="<?= $this->url(['controller' => 'artykuly', 'action' => $art->articles_id . ".html"])?>/<?= $art->articles_id ?>.html"><?php print_r($art->title)?></a></li>
+        <li><a href="<?= $this->baseUrl('artykuly/artykul/pokaz/' . $art->articles_id)?>"><?= $art->title?></a></li>
         <?php endforeach ?>
     </ul>
 </div>
