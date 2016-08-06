@@ -18,11 +18,17 @@ class ArtykulyController extends Zend_Controller_Action
 
     public function artykulAction()
     {
-        $param      = $this->getParam('pokaz');
         $articlesDB = new Application_Model_DbTable_Articles();
+        $commentsDB = new Application_Model_DbTable_Comments();
+        
+        $param      = $this->getParam('pokaz');
         $select     = $articlesDB->select()->where('articles_id = ?', $param);
         $res        = $articlesDB->fetchRow($select);
-        $this->view-> article = $res;
+        
+        $this->view->article      = $res;
+        $this->view->commentForm  = new Application_Form_Comments();
+        $this->view->comments     = $commentsDB->fetchAll();
+        
     }
 
     public function kategoriaAction()

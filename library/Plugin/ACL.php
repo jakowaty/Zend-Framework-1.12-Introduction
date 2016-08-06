@@ -90,7 +90,7 @@ Class Plugin_ACL extends Zend_Controller_Plugin_Abstract
             self::$currentUser = new Plugin_User($this->currentRole, $user);
         }
     }
-    protected function getCurrentUser(){
+    public function getCurrentUser(){
         return self::$currentUser;
     }
     
