@@ -2,7 +2,7 @@
 Blog - Zend framework 1.12 
 
 Introduction to Mvc/Zend Frameworks Universe
-(Learn Projest)
+(Learn Project)
 
 -Database Acces
 
