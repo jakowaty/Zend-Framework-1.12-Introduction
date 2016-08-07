@@ -25,9 +25,13 @@ class ArtykulyController extends Zend_Controller_Action
         $select     = $articlesDB->select()->where('articles_id = ?', $param);
         $res        = $articlesDB->fetchRow($select);
         
+        $selectCom  = $commentsDB->select()->where('articles_id = ?', $param);
+        
         $this->view->article      = $res;
         $this->view->commentForm  = new Application_Form_Comments();
-        $this->view->comments     = $commentsDB->fetchAll();
+        $this->view->identity     = Plugin_User::isUser();
+        $this->view->comments     = $commentsDB->fetchAll($selectCom);
+        
         
     }
 

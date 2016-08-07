@@ -43,7 +43,7 @@ class Plugin_User
     }
     
     public static function isLoggedIn(){
-        return self::isUser();
+        return Zend_Auth::getInstance()->hasIdentity();
     }
 }
 

@@ -5,16 +5,75 @@
     <h3 style="text-align: center">
         <?php print $this->article['title']?> 
         <span style="font-weight: normal; font-size: 0.4em">
-            <i> by <span style="font-size: 1.8em"><?php print $this->article->autor?></i>
+            <i> by <span style="font-size: 1.8em"><?php print $this->article['autor']?></i>
         </span>
     </h3>
     <?php print $this->article['text']?> 
     <hr>
 </div>
-<div class="container-fluid">
-    <?= $this->commentForm ?>
+<?php if ($this->identity):?>
+    <div class="container-fluid">
+        <?= $this->commentForm ?>
+    </div>
+<?php endif ?>
+<hr>
+<div>
+    <?php
+        $counter = 0;
+        $comments_Reflection = new ReflectionClass($this->comments);
+        if ($comments_Reflection->implementsInterface('Iterator')) {
+            print 'implements';
+        } else {
+            print "not implements";
+        }
+    ?>
 </div>
 <style>
     form.form textarea { height: 5em; width: 70%}
 </style>
+<script>
+    $(function(){
+       var commentForm = "#commentForm";
+       function pageSpecific()
+       {
+           var articles_id = "<?= (string)$this->article["articles_id"]?>";
+           $(commentForm + ' input[name="articles_id"]').val(articles_id);
+       }
+       
+       function form(id){
+           if ($(id)) {
+               var dataF = $(id).serializeArray();
+               
+               if ($(id).attr('method')) {
+                   var method = $(id).attr('method');
+               } else {
+                   var method = "POST";
+               }
+               
+               if ($(id).attr('action') && $(id).attr('action') !== "" && $(id).attr('action') !== "#") {
+                   var action = $(id).attr('action');
+               } else {
+                   var action = window.location;
+               }
+               console.log(method);
+               console.log(action);
+
+               $.ajax({
+                   type : method,
+                   url  : action,
+                   data : dataF
+               }).done(function(response){
+                   console.log(response);
+               });
+            }
+           
+       };
+        
+       $(commentForm).submit(function(e){
+            e.preventDefault();
+            form(commentForm);
+       });
+       pageSpecific();
+    });
+</script>
     

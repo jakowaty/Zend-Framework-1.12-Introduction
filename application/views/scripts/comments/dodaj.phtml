@@ -1,0 +1,12 @@
+<?php if ($this->success): ?>
+
+        Dodano komentarz
+        
+<?php elseif ($this->error): ?>
+
+        Nie dodano komentarza
+
+<?php else:
+        throw new Exception('Unexpected behavior');
+      endif;
+?>

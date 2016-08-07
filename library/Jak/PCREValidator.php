@@ -9,6 +9,10 @@ class Jak_PCREValidator extends Zend_Application_Resource_ResourceAbstract
         
     }
     
+    public function getPattern(){
+        return $this->pattern;
+    }
+    
     public function init(){        
     }
     
