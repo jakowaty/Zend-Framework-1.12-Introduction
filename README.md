@@ -1,6 +1,6 @@
 # Zend Framework 1.12 Introduction exercises
 
-######Exercised features:  
+#####Exercised features:  
 * Database Acces
 * Zend Forms
 * User account creation/registration with email validation using google.smtp
