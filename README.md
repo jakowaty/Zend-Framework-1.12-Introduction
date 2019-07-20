@@ -1,24 +1,11 @@
-# php
-Blog - Zend framework 1.12  | jQuery | bootstrap (basic layout)
+# Zend Framework 1.12 Introduction exercises
 
-Introduction to Mvc/Zend Frameworks Universe
-(Learn Project)
-
--Database Acces
-
--Zend Forms
-
--Register with activate Zend_Mail -> smtp.google.com
-
--Captcha Validator
-
--Zend_Acl - 3 Level priviledges setup(Plugin Registered)
-
--User state tracking
-
--Paginator
-
--adding content feature for admin
-
--adding comments to content feature for registered users
+######Exercised features:  
+* Database Acces
+* Zend Forms
+* User account creation/registration with email validation using google.smtp
+* Zend Captcha Validator
+* Zend_Acl - 3 levels of User priviledges (admin, user, guest)
+* Zend Paginator
+* Adding comments by authenticated users
 
